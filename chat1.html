@@ -1,0 +1,34 @@
+
+<html>
+    <head><title>original</title></head>
+    <body>
+        <header>
+            <h1>chatbot beta</h1>
+        </header>
+        <input id="question" type="text"><br>
+        <button onclick="answer()">hear answer</button>
+        <br>
+        <span id="ans"></span>
+        <script>
+            function answer(){
+                var greetings=['hi','hello','how are you?','hiya','yo','what up?','hallo','namaste','hola','ni hao','ca va bien?'];
+                var greetingsAnswer=['hi','hello','how are you?','hiya','yo','what up?','hallo','namaste','hola','ni hao','ca va bien?'];
+                var badWords=['fuck','dumbass','ass','asshole','middle finger','stupido','stupid','idiot','kun khoi yay mak mak!','scallywag','weirdo','dumbo','f**k','f*ck','***','a**','**s','*s*'];
+                var badWordsAnswer=['fuck','dumbass','ass','asshole','middle finger','stupido','stupid','idiot','kun khoi yay mak mak!','scallywag','weirdo','dumbo','f**k','f*ck','***','a**','**s','*s*'];
+                var unknown=[];
+                var ans;
+                var i;
+                var questionTag=document.getElementById("question").value;
+                for(i=0;i<greetings.length;i++){
+                    if( greetings[i] === questionTag){ 
+                        ans=greetingsAnswer[Math.floor(Math.random()*greetingsAnswer.length)];
+                    } 
+                    else{
+                        ans="not";
+                    }
+                }
+                document.getElementById("ans").innerHTML=ans;
+            }
+        </script>
+    </body>
+</html>
