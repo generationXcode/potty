@@ -10,22 +10,57 @@
         <br>
         <span id="ans"></span>
         <script>
+            var greetings=['hi','hello','how are you?','hiya','yo','what up?','hallo','namaste','hola','ni hao','ca va bien?'];
+            var greetingsAnswer=['hi','hello','how are you?','hiya','yo','what up?','hallo','namaste','hola','ni hao','ca va bien?'];
+            var badWords=['fuck','dumbass','ass','asshole','middle finger','stupido','stupid','idiot','kun khoi yay mak mak!','scallywag','weirdo','dumbo','f**k','f*ck','***','a**','**s','*s*'];
+            var badWordsAnswer=['fuck','dumbass','ass','asshole','middle finger','stupido','stupid','idiot','kun khoi yay mak mak!','scallywag','weirdo','dumbo','f**k','f*ck','***','a**','**s','*s*'];
+            var unknown=[];
+                
             function answer(){
-                var greetings=['hi','hello','how are you?','hiya','yo','what up?','hallo','namaste','hola','ni hao','ca va bien?'];
-                var greetingsAnswer=['hi','hello','how are you?','hiya','yo','what up?','hallo','namaste','hola','ni hao','ca va bien?'];
-                var badWords=['fuck','dumbass','ass','asshole','middle finger','stupido','stupid','idiot','kun khoi yay mak mak!','scallywag','weirdo','dumbo','f**k','f*ck','***','a**','**s','*s*'];
-                var badWordsAnswer=['fuck','dumbass','ass','asshole','middle finger','stupido','stupid','idiot','kun khoi yay mak mak!','scallywag','weirdo','dumbo','f**k','f*ck','***','a**','**s','*s*'];
-                var unknown=[];
                 var ans;
                 var i;
                 var questionTag=document.getElementById("question").value;
-                for(i=0;i<greetings.length;i++){
-                    if( greetings[i] === questionTag){ 
+                if(questionTag!=""){
+                for(i in greetings){
+                    if(  new RegExp(greetings[i]).test(questionTag)){ 
                         ans=greetingsAnswer[Math.floor(Math.random()*greetingsAnswer.length)];
                     } 
-                    else{
-                        ans="not";
-                    }
+                }
+                if(ans===undefined){
+                for(i in greetingsAnswer){
+                    if(  new RegExp(greetingsAnswer[i]).test(questionTag)){ 
+                        ans=greetings[Math.floor(Math.random()*greetings.length)];
+                    } 
+                }
+                if(ans===undefined){
+                for(i in badWords){
+                    if(  new RegExp(badWords[i]).test(questionTag)){ 
+                        ans=badWordsAnswer[Math.floor(Math.random()*badWordsAnswer.length)];
+                    } 
+                }
+                if(ans===undefined){
+                for(i in badWordsAnswer){
+                    if( new RegExp( badWordsAnswer[i]).test(questionTag)){ 
+                        ans=badWords[Math.floor(Math.random()*badWords.length)];
+                    } 
+                }
+                if(ans===undefined){
+                for(i in unknown){
+                    if( new RegExp(unknown[i]).test(questionTag)){ 
+                        ans=unknown[Math.floor(Math.random()*unknown.length)];
+                    } 
+                }
+                if(ans===undefined){
+                        unknown.push(questionTag);
+                        ans=unknown[Math.floor(Math.random()*(unknown.length-1))];
+                if(ans===undefined){
+                        ans="indeed";
+                   }
+                }
+                }
+                }
+                }
+                }
                 }
                 document.getElementById("ans").innerHTML=ans;
             }
